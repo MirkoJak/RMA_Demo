@@ -79,8 +79,8 @@ def _select_labels(labels):
                    'Flooring': 'Pavimentazione',
                    'House': 'Abitazione',
                    'Plaster': 'Intonaco',
-                   'Plumbing': 'tubature',
-                   'Plumbing fixture': 'impianto idraulico',
+                   'Plumbing': 'Tubature',
+                   'Plumbing fixture': 'Impianto idraulico',
                    'Toilet': 'Gabinetto',
                    'Window': 'Finestra'}
     for label, score in labels.items():

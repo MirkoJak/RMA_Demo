@@ -103,18 +103,22 @@ def _extract_price(lines):
     for match in iterator:
         p = Price.fromstring(re.sub(r'€|euro', '', match.group()).strip()).amount_float
         # Do uno score maggiore a quei prezzi icino a determinate keyword
-        prev = match.start() - 30 if (match.start() - 30) > 0 else 0
-        succ = match.end() + 30 if (match.end() + 30) < len(text) else len(text)
-        if re.search(keywords, text[prev:match.start()]) or re.search(keywords, text[match.end():succ]):
-            score = 1
-        else:
-            score = 0
-        prices.append((p, score))
+        if p is not None:
+            prev = match.start() - 30 if (match.start() - 30) > 0 else 0
+            succ = match.end() + 30 if (match.end() + 30) < len(text) else len(text)
+            if re.search(keywords, text[prev:match.start()]) or re.search(keywords, text[match.end():succ]):
+                score = 1
+            else:
+                score = 0
+            prices.append((p, score))
 
     # Prendo il valore massimo di quelli con score 1 (se non ci sono con score 1 prendo il massimo con score 0)
-    prices.sort(key=lambda tup: (tup[1], tup[0]), reverse=True)
-    p_max = prices[0][0]
-    return p_max
+    if len(prices) > 0:
+        prices.sort(key=lambda tup: (tup[1], tup[0]), reverse=True)
+        p_max = prices[0][0]
+        return p_max
+    else:
+        return ''
 
 
 @st.cache(show_spinner=False)
