@@ -2,6 +2,7 @@ import streamlit as st
 import re
 import io
 import os
+import sys
 from price_parser import Price
 
 from google.cloud import documentai
@@ -42,6 +43,7 @@ def _read_text_from_pdf(pdf_file):
 
     # Call the API
     print('Warning: Document AI API call')
+    sys.stdout.flush()
     result = client.process_document(request=request)
     document = result.document
 

@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import io
 import re
+import sys
 import dateutil.parser as dparser
 from datetime import datetime
 from google.cloud import documentai
@@ -42,6 +43,7 @@ def _read_text_from_pdf(pdf_file):
 
     # Call the API
     print('Warning: Document AI API call')
+    sys.stdout.flush()
     result = client.process_document(request=request)
     document = result.document
 

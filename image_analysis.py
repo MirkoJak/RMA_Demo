@@ -1,6 +1,7 @@
 import streamlit as st
 import fitz
 import os
+import sys
 import pandas as pd
 from google.cloud import vision
 from google.oauth2 import service_account
@@ -52,6 +53,7 @@ def _classify_image(image_bytes):
 
     # Call the API
     print('Warning: Vision API call')
+    sys.stdout.flush()
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
