@@ -107,6 +107,8 @@ def image_analysis(file):
             labels = _classify_image(im)
             selected_labels = _select_labels(labels)
             out[i + 1] = (im, selected_labels)
+            if not os.path.exists(r'tmp/image_labels'):
+                os.mkdir(r'tmp/image_labels')
             pd.DataFrame(selected_labels.values(), index=selected_labels.keys(), columns=['Confidence']). \
                 to_csv(os.path.join(r'tmp/image_labels', filename))
 

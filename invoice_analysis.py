@@ -147,6 +147,8 @@ def invoice_analysis(file):
         else:
             # Uso le API Google per estrarre il testo dal file e lo salvo
             doc = _read_text_from_pdf(file)
+            if not os.path.exists(r'tmp/text'):
+                os.mkdir(r'tmp/text')
             with open(os.path.join(r'tmp/text', filename), "w", encoding='utf-8') as f:
                 f.writelines(doc)
 
