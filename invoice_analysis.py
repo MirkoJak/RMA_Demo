@@ -142,7 +142,7 @@ def invoice_analysis(file):
         doc = stringio.readlines()
     elif file.type == 'application/pdf':
         # Controllo prima se il file non è già presente in formato text nella temporary
-        filename = os.path.splitext(os.path.basename(file.name))[0] + '.txt'
+        filename = os.path.splitext(os.path.basename(file.name))[0] + '_' + str(file.size) + '.txt'
         if os.path.exists(os.path.join(r'tmp/text', filename)):
             with open(os.path.join(r'tmp/text', filename), 'r', encoding='utf-8') as f:
                 doc = f.readlines()

@@ -100,7 +100,7 @@ def image_analysis(file):
     out = {}
     for i, im in enumerate(images):
         # Controllo prima se le label sono già presenti in formato csv nella temporary
-        filename = os.path.splitext(os.path.basename(file.name))[0] + '_' + str(i + 1) + '.csv'
+        filename = os.path.splitext(os.path.basename(file.name))[0] + '_' + str(file.size) + '_' + str(i + 1) + '.csv'
         if os.path.exists(os.path.join(r'tmp/image_labels', filename)):
             out[i + 1] = (im, pd.read_csv(os.path.join(r'tmp/image_labels', filename),
                                           header=0, names=['Label', 'Confidence']).set_index('Label').
