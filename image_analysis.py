@@ -5,6 +5,7 @@ import sys
 import pandas as pd
 from google.cloud import vision
 from google.oauth2 import service_account
+import SessionState
 
 # Secrets
 credentials_info = {'type': st.secrets['type'],
@@ -52,9 +53,11 @@ def _classify_image(image_bytes):
     client = vision.ImageAnnotatorClient(credentials=credentials)
 
     # Call the API
+    response = client.label_detection(image=image)
     print('Warning: Vision API call')
     sys.stdout.flush()
-    response = client.label_detection(image=image)
+    sess = SessionState.get(api_calls=0)
+    sess.api_calls = sess.api_calls + 1
     labels = response.label_annotations
 
     descriptions = [l.description for l in labels]

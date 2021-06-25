@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.streamlit" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp/image_labels" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp/text" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

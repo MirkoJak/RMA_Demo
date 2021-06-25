@@ -7,6 +7,7 @@ import dateutil.parser as dparser
 from datetime import datetime
 from google.cloud import documentai
 from google.oauth2 import service_account
+import SessionState
 
 # Secrets
 credentials_info = {'type': st.secrets['type'],
@@ -42,9 +43,11 @@ def _read_text_from_pdf(pdf_file):
     request = {"name": name, "raw_document": document}
 
     # Call the API
+    result = client.process_document(request=request)
     print('Warning: Document AI API call')
     sys.stdout.flush()
-    result = client.process_document(request=request)
+    sess = SessionState.get(api_calls=0)
+    sess.api_calls = sess.api_calls + 1
     document = result.document
 
     return document.text.splitlines(keepends=True)
