@@ -61,7 +61,13 @@ else:
     if option is not None:
         im = results[option][0]
         labels = results[option][1]
-        st.image(im, width=255)
+        if uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(['Tubature', 'Impianto idraulico'], labels):
+            caption = 'Danneggiante'
+        elif uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(['Soffitto', 'Intonaco'], labels):
+            caption = 'Danneggiato'
+        else:
+            caption = None
+        st.image(im, width=255, caption=caption)
         st.dataframe(pd.DataFrame(labels.values(), index=labels.keys(), columns=['Confidence']).
                      sort_values('Confidence', ascending=False))
 
