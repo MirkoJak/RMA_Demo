@@ -9,6 +9,7 @@ import SessionState
 def any_in(a, b):
     return any(i in b for i in a)
 
+
 # -----Sidebar----- #
 st.sidebar.image(r'figures/MicrosoftTeams-image.png', width=225)
 st.sidebar.title('AI per la Polizza Globale Fabbricati')
@@ -61,9 +62,11 @@ else:
     if option is not None:
         im = results[option][0]
         labels = results[option][1]
-        if uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(['Tubature', 'Impianto idraulico'], labels):
+        if uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(
+                ['Tubature', 'Impianto idraulico'], labels):
             caption = 'Danneggiante'
-        elif uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(['Soffitto', 'Intonaco'], labels):
+        elif uploaded_file_1 is not None and key_data['Causale'] == 'Acqua condotta' and any_in(
+                ['Soffitto', 'Intonaco'], labels):
             caption = 'Danneggiato'
         else:
             caption = None

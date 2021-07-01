@@ -102,8 +102,8 @@ def _extract_price(lines):
     prices = []
     for match in iterator:
         p = Price.fromstring(re.sub(r'€|euro', '', match.group()).strip()).amount_float
-        # Do uno score maggiore a quei prezzi icino a determinate keyword
-        if p is not None:
+        # Elimino i prezzi al di sopra di 10K e do uno score maggiore a quei prezzi vicino a determinate keyword
+        if p is not None and p <= 10000:
             prev = match.start() - 30 if (match.start() - 30) > 0 else 0
             succ = match.end() + 30 if (match.end() + 30) < len(text) else len(text)
             if re.search(keywords, text[prev:match.start()]) or re.search(keywords, text[match.end():succ]):
