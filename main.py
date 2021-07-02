@@ -76,9 +76,9 @@ else:
 
 if uploaded_file_1 is not None and uploaded_file_2 is not None:
 
-    lab = [l for r in results.values() for l in r[1].keys()]
+    # lab = [l for r in results.values() for l in r[1].keys()]
     if key_data['Causale'] == 'Acqua condotta' and \
-            any_in(['Tubature', 'Impianto idraulico'], lab):
+            any_in(['Tubature', 'Impianto idraulico'], labels):
         st.image(r'figures/green_checkmark.png', width=150)
 
 # Nella terza colonna gestisco l'estrazione dei dati da file testuali
